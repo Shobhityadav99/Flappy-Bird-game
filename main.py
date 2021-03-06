@@ -12,7 +12,7 @@ GAME_SPRITES={}
 GAME_SOUNDS={}
 PLAYER='/gallery/sprites/bird.png'
 BACKGROUND='/gallery/sprites/background.png'
-PIPE='/gallery/sprites/pipe.png'
+PIPE=PIPE
 
 if __name__ == '__main__':
     pygame.init()
@@ -34,7 +34,13 @@ if __name__ == '__main__':
     GAME_SPRITES['message'] = pygame.image.load('/gallery/sprites/message.png').convert_alpha(),
     GAME_SPRITES['base'] = pygame.image.load('/gallery/sprites/base.png').convert_alpha(),
     GAME_SPRITES['pipe'] = (
-        pygame.image.load('/gallery/sprites/pipe.png').convert_alpha(),
-        pygame.image.load('/gallery/sprites/pipe.png').convert_alpha(),
+        pygame.transform.rotate(pygame.image.load(PIPE).convert_alpha()),
+        pygame.image.load(PIPE).convert_alpha(),
     )
     
+
+    GAME_SOUNDS['die']=pygame.mixer.Sound('/gallery/audio/die.wav')
+    GAME_SOUNDS['hit']=pygame.mixer.Sound('/gallery/audio/hit.wav')
+    GAME_SOUNDS['point']=pygame.mixer.Sound('/gallery/audio/point.wav')
+    GAME_SOUNDS['swoosh']=pygame.mixer.Sound('/gallery/audio/swoosh.wav')
+    GAME_SOUNDS['wing']=pygame.mixer.Sound('/gallery/audio/wing.wav')
