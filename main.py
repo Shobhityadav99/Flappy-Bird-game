@@ -14,6 +14,30 @@ PLAYER='gallery/sprites/bird.png'
 BACKGROUND='gallery/sprites/background.png'
 PIPE='gallery/sprites/pipe.png'
 
+def welcomeScreen():
+    playerx = int(SCREENWIDTH/5)
+    playery = int((SCREENHEIGHT - GAME_SPRITES['player'].get_height())/2)
+    messagex = int((SCREENWIDTH - GAME_SPRITES['message'].get_width())/2)
+    messagey = int(SCREENHEIGHT*0.13)
+    basex=0
+    while True:
+        for event in pygame.event.get():
+            if event.type == QUIT or (event.type == KEYDOWN and event.type == K_ESCAPE):
+                pygame.quit()
+                sys.exit()
+
+            elif event.type == KEYDOWN and (event.type==K_SPACE or event.type == K_UP):
+                return
+
+            else:
+                SCREEN.blit(GAME_SPRITES['background'],(0,0))
+                SCREEN.blit(GAME_SPRITES['player'],(playerx,playery))
+                SCREEN.blit(GAME_SPRITES['message'],(messagex,messagey))
+                SCREEN.blit(GAME_SPRITES['base'],(basex,GROUNDY))
+                pygame.display.update()
+                FPSCLOCK.tick(FPS)
+
+
 if __name__ == '__main__':
     pygame.init()
     FPSCLOCK = pygame.time.Clock()
@@ -34,7 +58,7 @@ if __name__ == '__main__':
     GAME_SPRITES['message'] = pygame.image.load('gallery/sprites/message.png').convert_alpha(),
     GAME_SPRITES['base'] = pygame.image.load('gallery/sprites/base.png').convert_alpha(),
     GAME_SPRITES['pipe'] = (
-        pygame.transform.rotate(pygame.image.load(PIPE).convert_alpha()),
+        pygame.transform.rotate(pygame.image.load(PIPE).convert_alpha(),180),
         pygame.image.load(PIPE).convert_alpha(),
     )
     
