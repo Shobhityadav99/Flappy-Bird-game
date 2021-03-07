@@ -20,7 +20,7 @@ def welcomeScreen():
     playery = int(SCREENHEIGHT/2)
     # messagex = int((SCREENWIDTH - GAME_SPRITES['message'].get_width())/2)
     messagex = int((SCREENWIDTH)/2)
-    messagey = int(SCREENHEIGHT*0.13)
+    messagey = int((SCREENHEIGHT)*0.13)
     basex=0
     while True:
         for event in pygame.event.get():
@@ -30,9 +30,9 @@ def welcomeScreen():
             elif event.type == KEYDOWN and (event.type==K_SPACE or event.type == K_UP):
                 return
             else:
-                SCREEN.blit(GAME_SPRITES['background'], (0, 0))    
-                SCREEN.blit(GAME_SPRITES['player'], (playerx, playery))    
-                SCREEN.blit(GAME_SPRITES['message'], (messagex,messagey ))    
+                SCREEN.blit(GAME_SPRITES['background'], (0, 0))
+                SCREEN.blit(GAME_SPRITES['player'], (playerx, playery))
+                # SCREEN.blit(GAME_SPRITES['message'], (messagex,messagey))
                 SCREEN.blit(GAME_SPRITES['base'], (basex, GROUNDY))    
                 pygame.display.update()
                 FPSCLOCK.tick(FPS)
