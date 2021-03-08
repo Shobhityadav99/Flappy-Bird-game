@@ -58,7 +58,7 @@ def mainGame():
     playerVelY = -9
     playerMaxVelY = 10
     playerMinVelY = -8
-    playerAccVelY = 1
+    playerAccY = 1
 
     playerFlapAccv=-8
     playerFlapped = False
@@ -85,7 +85,31 @@ def mainGame():
                 print(f"Your score is {score}")
             GAME_SOUNDS['point'].play()
 
-        
+        if playerVelY < playerMaxVelY and not playerFlapped:
+            playerVelY += playerAccY
+
+        if playerFlapped:
+            playerFlapped = False
+        playerHeight = GAME_SPRITES['player'].get_height()
+        playery = playery + min(playerVelY , GROUNDY - playery - playerHeight)
+
+        for upperPipes , lowerPipes in zip(upperPipes, lowerPipes):
+            upperPipes['x'] += pipeVelX
+            lowerPipes['x'] += pipeVelX
+
+        if 0<upperPipes[0]['x']<5:
+            newPipe = getRandomPipe()
+            upperPipes.append(newPipe[0])
+            lowerPipes.append(newPipe[1])
+
+        if upperPipes[0]['x'] < -GAME_SPRITES['pipe'][0].get_width():
+            upperPipes.pop(0)
+            lowerPipes.pop(0)
+
+        SCREEN.blit(GAME_SPRITES['background'],(0,0))
+        for upperPipes , lowerPipes in zip(upperPipes, lowerPipes):
+            upperPipes['x'] += pipeVelX
+            lowerPipes['x'] += pipeVelX
 
 
 
