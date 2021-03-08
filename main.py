@@ -42,8 +42,28 @@ def mainGame():
     playerx = int(SCREENWIDTH / 5)
     playery = int(SCREENHEIGHT / 2)
     basex = 0
-    newpipe1 = getRandomPipe()
-    newpipe2 = getRandomPipe()
+    newPipe1 = getRandomPipe()
+    newPipe2 = getRandomPipe()
+
+    upperPipes = [
+        {'x': SCREENWIDTH+200, 'y':newPipe1[0]['y']},
+        {'x': SCREENWIDTH+200+(SCREENWIDTH/2), 'y':newPipe2[0]['y']},
+    ]
+    lowerPipes = [
+        {'x': SCREENWIDTH+200, 'y':newPipe1[1]['y']},
+        {'x': SCREENWIDTH+200+(SCREENWIDTH/2), 'y':newPipe2[1]['y']},
+    ]
+
+    pipeVelX=-4
+    playerVelY = -9
+    playerMaxVelY = 10
+    playerMinVelY = -8
+    playerAccVelY = 1
+
+    playerFlapAccv=-8
+    playerFlapped = False
+    
+
 
 
 def getRandomPipe():
