@@ -62,7 +62,30 @@ def mainGame():
 
     playerFlapAccv=-8
     playerFlapped = False
-    
+    while True:
+        for event in pygame.event.get():
+            if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
+                pygame.exit()
+                sys.exit()
+            if event.type == KEYDOWN and (event.key == K_SPACE or event.key == K_UP):
+                if playery > 0:
+                    playerVelY = playerFlapAccv
+                    playerFlapped = True
+                    GAME_SOUNDS['wing'].play()
+
+        crashTest = isCollide(playerx, playery,upperPipes,lowerPipes)
+        if crashTest:
+            return
+
+        playerMidPos = playerx + GAME_SPRITES['player'].get_width()/2
+        for pipe in upperPipes:
+            pipeMidPos = pipe['x'] + GAME_SPRITES['pipe'][0].get_width()/2
+            if pipeMidPos <= playerMidPos < pipeMidPos + 4:
+                score +=1
+                print(f"Your score is {score}")
+            GAME_SOUNDS['point'].play()
+
+        
 
 
 
