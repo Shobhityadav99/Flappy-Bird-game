@@ -16,10 +16,8 @@ PIPE = 'gallery/sprites/pipe.png'
 
 def welcomeScreen():
     playerx = int(SCREENWIDTH/5)
-    # playery = int((SCREENHEIGHT - GAME_SPRITES['player'].get_height())/2)
-    playery = int(SCREENHEIGHT/2)
-    # messagex = int((SCREENWIDTH - GAME_SPRITES['message'].get_width())/2)
-    messagex = int(SCREENWIDTH / 4.8)
+    playery = int((SCREENHEIGHT - GAME_SPRITES['player'].get_height())/2)
+    messagex = int((SCREENWIDTH - GAME_SPRITES['message'].get_width())/2)
     messagey = int(SCREENHEIGHT * 0.13)
     basex=0
     while True:
@@ -36,6 +34,18 @@ def welcomeScreen():
                 SCREEN.blit(GAME_SPRITES['base'], (basex, GROUNDY))    
                 pygame.display.update()
                 FPSCLOCK.tick(FPS)
+
+def mainGame():
+    score=0
+    playerx=int(SCREENWIDTH /5)
+    playery=int(SCREENHEIGHT /2)
+    basex=0
+    newpipe1=getRandomPipe()
+    newpipe2=getRandomPipe()
+
+def getRandomPipe():
+    pass
+
 
 
 if __name__ == '__main__':
@@ -73,4 +83,4 @@ if __name__ == '__main__':
 
     while True:
         welcomeScreen()
-        # mainGame()
+        mainGame()
